@@ -128,9 +128,7 @@ public class CassandraCQLClient extends DB
 
             Cluster.Builder builder = Cluster.builder()
                                              .withPort(Integer.valueOf(port))
-                                             .addContactPoints(hosts)
-                                             .withPoolingOptions(new PoolingOptions().setCoreConnectionsPerHost(HostDistance.LOCAL, 1)
-                                                                                     .setMaxConnectionsPerHost(HostDistance.LOCAL, 1));
+                                             .addContactPoints(hosts);
             if ((username != null) && !username.isEmpty())
             {
                 builder = builder.withCredentials(username, password);
