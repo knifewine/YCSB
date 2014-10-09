@@ -129,7 +129,7 @@ public class CassandraCQLClient extends DB
             Cluster.Builder builder = Cluster.builder()
                                              .withPort(Integer.valueOf(port))
                                              .addContactPoints(hosts)
-                                             .withCompression(ProtocolOptions.Compression.NONE);
+                                             .withCompression(ProtocolOptions.Compression.SNAPPY);
             if ((username != null) && !username.isEmpty())
             {
                 builder = builder.withCredentials(username, password);
