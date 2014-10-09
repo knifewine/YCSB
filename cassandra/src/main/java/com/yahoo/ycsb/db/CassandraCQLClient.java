@@ -136,7 +136,8 @@ public class CassandraCQLClient extends DB
                                              .withPoolingOptions(new PoolingOptions().setCoreConnectionsPerHost(HostDistance.LOCAL, connectionsPerHost)
                                                                                      .setMaxConnectionsPerHost(HostDistance.LOCAL, connectionsPerHost))
                                              .withSocketOptions(new SocketOptions().setConnectTimeoutMillis(3 * 60 * 1000)
-                                                                                   .setReadTimeoutMillis(3 * 60 * 1000));
+                                                                                   .setReadTimeoutMillis(3 * 60 * 1000))
+                                             .withCompression(ProtocolOptions.Compression.NONE);
             if ((username != null) && !username.isEmpty())
             {
                 builder = builder.withCredentials(username, password);
