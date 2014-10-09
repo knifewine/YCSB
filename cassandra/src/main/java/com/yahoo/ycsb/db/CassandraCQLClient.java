@@ -125,30 +125,24 @@ public class CassandraCQLClient extends DB
             readConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(READ_CONSISTENCY_LEVEL_PROPERTY, READ_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
             writeConsistencyLevel = ConsistencyLevel.valueOf(getProperties().getProperty(WRITE_CONSISTENCY_LEVEL_PROPERTY, WRITE_CONSISTENCY_LEVEL_PROPERTY_DEFAULT));
             readallfields = Boolean.parseBoolean(getProperties().getProperty(CoreWorkload.READ_ALL_FIELDS_PROPERTY, CoreWorkload.READ_ALL_FIELDS_PROPERTY_DEFAULT));
+            // until 2.1.2, max requests per connection is 127
+            int threadcount = Integer.parseInt(getProperties().getProperty("threadcount")); // workload really needs to specify this. not including a default on purpose
+            int i = Math.min(1, threadcount / 64);
+            int connectionsPerHost = Integer.parseInt(getProperties().getProperty("connections_per_host", String.valueOf(i)));
 
-            // public void connect(String node) {}
+            Cluster.Builder builder = Cluster.builder()
+                                             .withPort(Integer.valueOf(port))
+                                             .addContactPoints(hosts)
+                                             .withPoolingOptions(new PoolingOptions().setCoreConnectionsPerHost(HostDistance.LOCAL, connectionsPerHost)
+                                                                                     .setMaxConnectionsPerHost(HostDistance.LOCAL, connectionsPerHost))
+                                             .withSocketOptions(new SocketOptions().setConnectTimeoutMillis(3 * 60 * 1000)
+                                                                                   .setReadTimeoutMillis(3 * 60 * 1000));
             if ((username != null) && !username.isEmpty())
             {
-                cluster = Cluster.builder()
-                                 .withCredentials(username, password)
-                                 .withPort(Integer.valueOf(port))
-                                 .addContactPoints(hosts).build();
-            }
-            else
-            {
-                cluster = Cluster.builder()
-                                 .withPort(Integer.valueOf(port))
-                                 .addContactPoints(hosts).build();
+                builder = builder.withCredentials(username, password);
             }
 
-            //Update number of connections based on threads
-            int threadcount = Integer.parseInt(getProperties().getProperty("threadcount","2"));
-            cluster.getConfiguration().getPoolingOptions().setMaxConnectionsPerHost(HostDistance.LOCAL, threadcount);
-
-            //Set connection timeout 3min (default is 5s)
-            cluster.getConfiguration().getSocketOptions().setConnectTimeoutMillis(3*60*1000);
-            //Set read (execute) timeout 3min (default is 12s)
-            cluster.getConfiguration().getSocketOptions().setReadTimeoutMillis(3*60*1000);
+            cluster = builder.build();
 
             Metadata metadata = cluster.getMetadata();
             System.out.printf("Connected to cluster: %s\n", metadata.getClusterName());
