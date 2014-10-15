@@ -1,0 +1,6 @@
+readallfields=true
+readproportion=0.9
+updateproportion=0
+scanproportion=0
+insertproportion=0.1
+

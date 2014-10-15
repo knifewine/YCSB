@@ -1,0 +1,8 @@
+couchbase.checkOperationStatus=true
+couchbase.hosts=bdplab1,bdplab2,bdplab3
+couchbase.password=
+couchbase.bucket=default
+couchbase.checkOperationStatus=true
+couchbase.views=
+couchbase.ddocs=
+couchbase.opTimeout=1000

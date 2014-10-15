@@ -1,0 +1,22 @@
+timeseries.granularity=100
+readretrycount=1000
+reconnectiontime=1000
+reconnectionthroughput=0
+measurementtype=timeseries
+exportmeasurementsinterval=30000
+updateretrycount=1000
+ignoreinserterrors=true
+insertretrycount=10
+
+
+# Core workload
+threadcount=200
+#maxexecutiontime=300
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+recordcount=120000000
+operationcount=120000000
+fieldcount=10
+fieldlength=10
+fieldnameprefix=f
+
+requestdistribution=latest
