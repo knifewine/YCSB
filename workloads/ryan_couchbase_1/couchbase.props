@@ -1,8 +1,12 @@
 couchbase.checkOperationStatus=true
-couchbase.hosts=node0,node1,node2
+couchbase.hosts=node1
 couchbase.password=
 couchbase.bucket=default
 couchbase.checkOperationStatus=true
 couchbase.views=
 couchbase.ddocs=
 couchbase.opTimeout=1000
+
+
+# Turn off persistance:
+couchbase.persistTo=ZERO

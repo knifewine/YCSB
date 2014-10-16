@@ -2,11 +2,11 @@
 
 TRIAL=community_`date +%Y-%m-%d_%H-%M-%S`
 
-/opt/couchbase/bin/couchbase-cli bucket-delete -c node0 --bucket=default -u Administrator -p asdf12
+#/opt/couchbase/bin/couchbase-cli bucket-delete -c node0 --bucket=default -u Administrator -p asdf12
 
-/opt/couchbase/bin/couchbase-cli bucket-create -c node0 --bucket=default --bucket-type=couchbase --bucket-ramsize=1024 --bucket-replica=1 --wait -u Administrator -p asdf12
+#/opt/couchbase/bin/couchbase-cli bucket-create -c node0 --bucket=default --bucket-type=couchbase --bucket-ramsize=1024 --bucket-replica=1 --wait -u Administrator -p asdf12
 
-sleep 10
+#sleep 10
 
 
 echo "Load..."
