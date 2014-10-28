@@ -10,13 +10,13 @@ insertretrycount=10
 
 
 # Core workload
-threadcount=200
+threadcount=400
 #maxexecutiontime=300
 workload=com.yahoo.ycsb.workloads.CoreWorkload
 recordcount=30000000
 operationcount=30000000
-fieldcount=100
-fieldlength=20
+fieldcount=5
+fieldlength=32
 fieldnameprefix=f
 
 requestdistribution=latest
