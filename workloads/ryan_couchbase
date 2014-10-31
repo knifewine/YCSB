@@ -1,0 +1,39 @@
+fieldcount=5
+fieldlength=32
+recordcount=256000000
+insertcount=256000000
+operationcount=9000000
+threadcount=500
+readproportion=1.00
+updateproportion=0.00
+scanproportion=0.00
+insertproportion=0.00
+requestdistribution=uniform
+scanlengthdistribution=uniform
+maxscanlength=100
+
+
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+maxexecutiontime=3600
+readallfields=true
+
+measurementtype=timeseries
+exportmeasurementsinterval=30000
+
+
+##### Cassandra #####
+hosts=node1
+
+
+##### Couchbase #####
+couchbase.checkOperationStatus=true
+couchbase.hosts=node1
+couchbase.password=
+couchbase.bucket=default
+couchbase.checkOperationStatus=true
+couchbase.views=
+couchbase.ddocs=
+couchbase.opTimeout=1000
+# Turn off persistance:
+couchbase.persistTo=ZERO
+

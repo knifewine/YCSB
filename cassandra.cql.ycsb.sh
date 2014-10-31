@@ -1,7 +1,6 @@
 #!/bin/bash
 
 mkdir -p trials/cassandra
-
 TRIAL=`date +%Y-%m-%d_%H-%M-%S`
 
 echo "drop keyspace if exists usertable;
@@ -9,114 +8,19 @@ drop keyspace if exists ycsb;
 create keyspace ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 1 };
 create table ycsb.usertable (
     y_id varchar primary key,
-    f0 varchar,
-    f1 varchar,
-    f2 varchar,
-    f3 varchar,
-    f4 varchar,
-    f5 varchar,
-    f6 varchar,
-    f7 varchar,
-    f8 varchar,
-    f9 varchar,
-    f10 varchar,
-    f11 varchar,
-    f12 varchar,
-    f13 varchar,
-    f14 varchar,
-    f15 varchar,
-    f16 varchar,
-    f17 varchar,
-    f18 varchar,
-    f19 varchar,
-    f20 varchar,
-    f21 varchar,
-    f22 varchar,
-    f23 varchar,
-    f24 varchar,
-    f25 varchar,
-    f26 varchar,
-    f27 varchar,
-    f28 varchar,
-    f29 varchar,
-    f30 varchar,
-    f31 varchar,
-    f32 varchar,
-    f33 varchar,
-    f34 varchar,
-    f35 varchar,
-    f36 varchar,
-    f37 varchar,
-    f38 varchar,
-    f39 varchar,
-    f40 varchar,
-    f41 varchar,
-    f42 varchar,
-    f43 varchar,
-    f44 varchar,
-    f45 varchar,
-    f46 varchar,
-    f47 varchar,
-    f48 varchar,
-    f49 varchar,
-    f50 varchar,
-    f51 varchar,
-    f52 varchar,
-    f53 varchar,
-    f54 varchar,
-    f55 varchar,
-    f56 varchar,
-    f57 varchar,
-    f58 varchar,
-    f59 varchar,
-    f60 varchar,
-    f61 varchar,
-    f62 varchar,
-    f63 varchar,
-    f64 varchar,
-    f65 varchar,
-    f66 varchar,
-    f67 varchar,
-    f68 varchar,
-    f69 varchar,
-    f70 varchar,
-    f71 varchar,
-    f72 varchar,
-    f73 varchar,
-    f74 varchar,
-    f75 varchar,
-    f76 varchar,
-    f77 varchar,
-    f78 varchar,
-    f79 varchar,
-    f80 varchar,
-    f81 varchar,
-    f82 varchar,
-    f83 varchar,
-    f84 varchar,
-    f85 varchar,
-    f86 varchar,
-    f87 varchar,
-    f88 varchar,
-    f89 varchar,
-    f90 varchar,
-    f91 varchar,
-    f92 varchar,
-    f93 varchar,
-    f94 varchar,
-    f95 varchar,
-    f96 varchar,
-    f97 varchar,
-    f98 varchar,
-    f99 varchar);
+    field0 blob,
+    field1 blob,
+    field2 blob,
+    field3 blob,
+    field4 blob);
 " | ~/fab/cassandra/bin/cqlsh node0
 
 sleep 10
 
 echo "Load..."
-bin/ycsb load cassandra-cql -s -P workloads/ryan_couchbase_1/cassandra.props -P workloads/ryan_couchbase_1/workload_ryan -P workloads/ryan_couchbase_1/workload_ryan_write > trials/cassandra/cass.$TRIAL.load.out 2> trials/cassandra/cass.$TRIAL.load.err
+bin/ycsb load cassandra-cql -s -P workloads/ryan_couchbase > trials/cassandra/cass.$TRIAL.thrift.uniform.load.out 2> trials/cassandra/cass.$TRIAL.thrift.uniform.load.err
 
 echo "Run..."
-bin/ycsb run cassandra-cql -s -P workloads/ryan_couchbase_1/cassandra.props -P workloads/ryan_couchbase_1/workload_ryan -P workloads/ryan_couchbase_1/workload_ryan_read > trials/cassandra/cass.$TRIAL.run.out 2> trials/cassandra/cass.$TRIAL.run.err
+bin/ycsb run cassandra-cql -s -P workloads/ryan_couchbase > trials/cassandra/cass.$TRIAL.thrift.uniform.run.out 2> trials/cassandra/cass.$TRIAL.thrift.uniform.run.err
 
 
