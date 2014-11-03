@@ -1,8 +1,8 @@
 fieldcount=5
 fieldlength=32
-recordcount=256000000
-insertcount=256000000
-operationcount=9000000
+recordcount=512000000
+insertcount=512000000
+operationcount=2560
 threadcount=500
 readproportion=1.00
 updateproportion=0.00
