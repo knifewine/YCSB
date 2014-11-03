@@ -1,29 +1,25 @@
+recordcount=100000000
+operationcount=100000000
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+
 fieldcount=5
 fieldlength=32
-recordcount=100000000
-insertcount=100000000
-operationcount=2560
-threadcount=500
-readproportion=1.00
-updateproportion=0.00
-scanproportion=0.00
-insertproportion=0.00
-requestdistribution=uniform
-scanlengthdistribution=uniform
-maxscanlength=100
 
-
-workload=com.yahoo.ycsb.workloads.CoreWorkload
-maxexecutiontime=3600
 readallfields=true
+
+threadcount=500
+readproportion=1.0
+updateproportion=0.0
+scanproportion=0
+insertproportion=0
+
+requestdistribution=uniform
 
 measurementtype=timeseries
 exportmeasurementsinterval=30000
 
-
 ##### Cassandra #####
 hosts=node1
-
 
 ##### Couchbase #####
 couchbase.checkOperationStatus=true

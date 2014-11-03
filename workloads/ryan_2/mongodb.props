@@ -1,3 +1,0 @@
-mongodb.url=mongodb://bdplab1:27017
-mongodb.database=ycsb
-mongodb.writeConcern=fsync_safe

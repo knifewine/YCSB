@@ -19,3 +19,4 @@ sleep 10
 
 echo "Load..."
 bin/ycsb load cassandra-cql -s -P workloads/ryan_couchbase > trials/cassandra/cass.$TRIAL.cql.load.out 2> trials/cassandra/cass.$TRIAL.cql.load.err
+#bin/ycsb load cassandra-cql -s -P workloads/test > trials/cassandra/cass.$TRIAL.cql.load.out 2> trials/cassandra/cass.$TRIAL.cql.load.err
