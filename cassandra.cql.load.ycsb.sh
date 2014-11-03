@@ -5,7 +5,7 @@ TRIAL=`date +%Y-%m-%d_%H-%M-%S`
 
 echo "drop keyspace if exists usertable;
 drop keyspace if exists ycsb;
-create keyspace ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 1 };
+create keyspace ycsb WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 2 };
 create table ycsb.usertable (
     y_id varchar primary key,
     field0 blob,
