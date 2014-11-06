@@ -11,5 +11,5 @@ TRIAL=couchbase_`date +%Y-%m-%d_%H-%M-%S`
 sleep 10
 
 echo "Load..."
-bin/ycsb load couchbase2 -s -P workloads/ryan_couchbase_1/couchbase.props -P workloads/ryan_couchbase_1/workload_ryan -P workloads/ryan_couchbase_1/workload_ryan_write > trials/couchbase/cb.$TRIAL.load.out 2> trials/couchbase/cb.$TRIAL.load.err
+bin/ycsb load couchbase2 -s -P workloads/ryan_couchbase > trials/couchbase/cb.$TRIAL.load.out 2> trials/couchbase/cb.$TRIAL.load.err
 
