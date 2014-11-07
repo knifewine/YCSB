@@ -12,7 +12,7 @@ create table ycsb.usertable (
     field1 blob,
     field2 blob,
     field3 blob,
-    field4 blob);
+    field4 blob) WITH compression = {'sstable_compression':''};
 " | ~/fab/cassandra/bin/cqlsh node0
 
 sleep 10
