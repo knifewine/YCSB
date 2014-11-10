@@ -1,5 +1,5 @@
 insertstart=0
-recordcount=224592674
+recordcount=1000000000
 operationcount=300000000
 workload=com.yahoo.ycsb.workloads.CoreWorkload
 
@@ -20,10 +20,10 @@ measurementtype=timeseries
 exportmeasurementsinterval=30000
 
 ##### Cassandra #####
-hosts=node1
+hosts=node0
 
 ##### Couchbase #####
-couchbase.hosts=node1
+couchbase.hosts=node0
 couchbase.bucket=default
 couchbase.password=
 couchbase.checkOperationStatus=true

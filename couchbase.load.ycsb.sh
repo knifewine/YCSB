@@ -6,7 +6,7 @@ TRIAL=couchbase_`date +%Y-%m-%d_%H-%M-%S`
 
 /opt/couchbase/bin/couchbase-cli bucket-delete -c node0 --bucket=default -u Administrator -p asdf12
 
-/opt/couchbase/bin/couchbase-cli bucket-create -c node0 --bucket=default --bucket-type=couchbase --bucket-ramsize=4096 --bucket-replica=1 --bucket-eviction-policy=fullEviction --wait -u Administrator -p asdf12
+/opt/couchbase/bin/couchbase-cli bucket-create -c node0 --bucket=default --bucket-type=couchbase --bucket-ramsize=18400 --bucket-eviction-policy=fullEviction --wait -u Administrator -p asdf12
 
 sleep 10
 
