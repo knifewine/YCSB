@@ -6,7 +6,7 @@ TRIAL=`date +%Y-%m-%d_%H-%M-%S`
 echo "drop keyspace usertable;
 create keyspace usertable with placement_strategy = 'org.apache.cassandra.locator.SimpleStrategy' and strategy_options = {replication_factor:1};
 use usertable; 
-create column family data WITH compression_options=null;" | ~/fab/cassandra/bin/cassandra-cli -h node1
+create column family data WITH compression_options=null;" | ~/fab/cassandra/bin/cassandra-cli -h node0
 
 sleep 10
 
