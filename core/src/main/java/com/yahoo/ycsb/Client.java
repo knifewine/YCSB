@@ -482,11 +482,6 @@ public class Client {
     }
 
     public static boolean checkRequiredProperties(Properties props) {
-        if (props.getProperty(WORKLOAD_PROPERTY) == null) {
-            System.out.println("Missing property: " + WORKLOAD_PROPERTY);
-            return false;
-        }
-
         return true;
     }
 
@@ -512,27 +507,6 @@ public class Client {
             exporter = new TextMeasurementsExporter(out);
         }
         return exporter;
-    }
-
-    /**
-     * Exports the measurements to either sysout or a file using the exporter
-     * loaded from conf.
-     *
-     * @throws IOException Either failed to write to output stream or failed to close it.
-     */
-    private static void exportMeasurements(MeasurementsExporter exporter, int opcount, long runtime)
-            throws IOException {
-        try {
-            exporter.write("OVERALL", "RunTime(ms)", runtime);
-            double throughput = 1000.0 * ((double) opcount) / ((double) runtime);
-            exporter.write("OVERALL", "Throughput(ops/sec)", throughput);
-
-            Measurements.getMeasurements().exportMeasurements(exporter);
-        } finally {
-            if (exporter != null) {
-                exporter.close();
-            }
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -719,7 +693,7 @@ public class Client {
         Workload workload = null;
 
         try {
-            Class workloadclass = classLoader.loadClass(props.getProperty(WORKLOAD_PROPERTY));
+            Class workloadclass = classLoader.loadClass(props.getProperty(WORKLOAD_PROPERTY, "com.yahoo.ycsb.workloads.CoreWorkload"));
             workload = (Workload) workloadclass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
@@ -793,7 +767,11 @@ public class Client {
                 System.out.println("Unknown DB " + dbname);
                 System.exit(0);
             }
-            Thread t = new ClientThread(db, dotransactions, workload, props, opcount / threadcount, targetperthreadperms);
+
+            // spread the ops out across threads evenly, but add the remainder after dividing to thread zero
+            int opsPerThread = opcount / threadcount;
+            int threadOps = threadid == 0 ? opsPerThread + (opcount - opsPerThread * threadcount) : opsPerThread;
+            Thread t = new ClientThread(db, dotransactions, workload, props, threadOps, targetperthreadperms);
             threads.add(t);
         }
 
