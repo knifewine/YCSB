@@ -13,7 +13,7 @@ create table ycsb.usertable (
     field2 blob,
     field3 blob,
     field4 blob);
-" | ~/fab/cassandra/bin/cqlsh node0
+" | ~/fab/cassandra/bin/cqlsh node1
 
 sleep 10
 
