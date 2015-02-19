@@ -1,0 +1,36 @@
+insertstart=0
+recordcount=140000000
+operationcount=300000000
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+
+fieldcount=5
+fieldlength=32
+
+readallfields=true
+
+threadcount=300
+readproportion=1.0
+updateproportion=0.0
+scanproportion=0
+insertproportion=0
+
+requestdistribution=uniform
+
+measurementtype=timeseries
+exportmeasurementsinterval=30000
+
+##### Cassandra #####
+hosts=node1,node2,node3
+cassandra.readconsistencylevel=QUORUM
+cassandra.writeconsistencylevel=QUORUM
+
+##### Couchbase #####
+couchbase.hosts=node0
+couchbase.bucket=default
+couchbase.password=
+couchbase.checkOperationStatus=true
+couchbase.views=
+couchbase.ddocs=
+# Turn off persistance:
+couchbase.persistTo=ZERO
+
