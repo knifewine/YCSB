@@ -18,5 +18,5 @@ create table ycsb.usertable (
 sleep 10
 
 echo "Load..."
-bin/ycsb load cassandra-cql -s -P workloads/russ_8692_load > trials/cassandra/cass.$TRIAL.cql.load.out 2> trials/cassandra/cass.$TRIAL.cql.load.err
+bin/ycsb load cassandra-cql -s -P workloads/russ_8692 > trials/cassandra/cass.$TRIAL.cql.load.out 2> trials/cassandra/cass.$TRIAL.cql.load.err
 #bin/ycsb load cassandra-cql -s -P workloads/test > trials/cassandra/cass.$TRIAL.cql.load.out 2> trials/cassandra/cass.$TRIAL.cql.load.err
